@@ -24,4 +24,4 @@ axios.interceptors.response.use(
     return err;
   }
 );
-console.log(process.env.VUE_APP_BASE_URL);
+// console.log(process.env.VUE_APP_BASE_URL);

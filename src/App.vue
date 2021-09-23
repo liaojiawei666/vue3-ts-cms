@@ -1,5 +1,5 @@
 <template>
-  <el-button>点击</el-button>
+  <router-view />
 </template>
 
 <style lang="less"></style>
