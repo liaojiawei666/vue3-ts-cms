@@ -8,6 +8,7 @@ import {
 } from "@/api/login/login";
 import { IAccount, IUserInfo, IUserMenus } from "@/api/login/type";
 import cache from "@/utils/cache";
+import router from "@/router";
 
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -42,6 +43,16 @@ const loginModule: Module<ILoginState, IRootState> = {
       commit("changeUserInfo", userInfo);
       const userMenusRsp = await requestUserMenusByRoleId(userInfo.role.id);
       commit("changeUserMenus", userMenusRsp.data);
+      cache.setCache("userMenus", userMenusRsp.data);
+      router.push("/main");
+    },
+    loadLocalLogin({ commit }) {
+      const token = cache.getCache("token");
+      commit("changeToken", token);
+      const userInfo = cache.getCache("userInfo");
+      commit("changeUserInfo", userInfo);
+      const userMenus = cache.getCache("userMenus");
+      commit("changeUserMenus", userMenus);
     },
   },
 };
