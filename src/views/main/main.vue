@@ -1,26 +1,30 @@
 <template>
   <el-container class="page">
-    <el-aside :width="'210px'">
-      <nav-menu />
+    <el-aside :width="isCollapse ? '60px' : '210px'">
+      <nav-menu :collapse="isCollapse" />
     </el-aside>
     <el-container class="main">
       <el-header>
-        <nav-header />
+        <nav-header v-on:foldChange="handleFoldChange" />
       </el-header>
-      <el-main> Content</el-main>
+      <el-main> <div class="test"></div></el-main>
     </el-container>
   </el-container>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import NavMenu from "@/components/nav-menu";
 import NavHeader from "@/components/nav-header/src/nav-header.vue";
 
 export default defineComponent({
   components: { NavHeader, NavMenu },
   setup() {
-    return {};
+    const isCollapse = ref<boolean>(false);
+    const handleFoldChange = (isFold: boolean) => {
+      isCollapse.value = isFold;
+    };
+    return { isCollapse, handleFoldChange };
   },
 });
 </script>
@@ -34,7 +38,6 @@ export default defineComponent({
   overflow-x: hidden;
   overflow-y: auto;
   cursor: pointer;
-  background-color: #001529;
   transition: width 0.3s linear;
 
   &::-webkit-scrollbar {
@@ -43,8 +46,6 @@ export default defineComponent({
 }
 
 .main {
-  overflow-y: auto;
-
   .el-header {
     height: 48px;
     background-color: #fff;
@@ -52,6 +53,10 @@ export default defineComponent({
 
   .el-main {
     background-color: rgb(240, 242, 245);
+    .test {
+      width: 20px;
+      height: 1000px;
+    }
   }
 }
 </style>
