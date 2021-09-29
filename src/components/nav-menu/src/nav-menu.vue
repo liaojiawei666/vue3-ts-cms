@@ -72,9 +72,11 @@ export default defineComponent({
 
   .el-menu-vertical {
     border: 0;
+
     .el-menu-item {
       background-color: #0c2135 !important;
     }
+
     // hover 高亮
     .el-menu-item:hover {
       color: #fff !important; // 菜单

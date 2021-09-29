@@ -7,7 +7,7 @@
       <el-header>
         <nav-header v-on:foldChange="handleFoldChange" />
       </el-header>
-      <el-main> <div class="test"></div></el-main>
+      <el-main>Content</el-main>
     </el-container>
   </el-container>
 </template>
@@ -53,6 +53,7 @@ export default defineComponent({
 
   .el-main {
     background-color: rgb(240, 242, 245);
+
     .test {
       width: 20px;
       height: 1000px;

@@ -9,11 +9,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
-  setup() {
-    return {};
+  emits: ["foldChange"],
+  setup(props, { emit }) {
+    const isFold = ref<boolean>(false);
+    const handleFoldClick = () => {
+      isFold.value = !isFold.value;
+      emit("foldChange", isFold.value);
+    };
+    return { isFold, handleFoldClick };
   },
 });
 </script>
@@ -22,6 +28,7 @@ export default defineComponent({
 .nav-header {
   height: 100%;
   line-height: 48px;
+
   .fold-menu {
     font-size: 30px;
     cursor: pointer;
